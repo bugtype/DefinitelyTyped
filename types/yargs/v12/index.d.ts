@@ -356,7 +356,7 @@ declare namespace yargs {
     }
 
     /** Remove keys K in T */
-    type Omit<T, K> = { [key in Exclude<keyof T, K>]: T[key] };
+    type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
     /** Remove undefined as a possible value for keys K in T */
     type Defined<T, K extends keyof T> = Omit<T, K> & { [key in K]: Exclude<T[key], undefined> };
